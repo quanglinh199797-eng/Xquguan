@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>X 关注管理助手</title>
+  <style>
+    body {
+      width: 480px;
+      max-height: 580px;
+      margin: 0;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f7f9f9;
+      color: #0f1419;
+      overflow-x: hidden;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #cfd9de;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    .title {
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .badge {
+      background: #00ba7c;
+      color: white;
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 9999px;
+    }
+    .controls {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    button {
+      background: #1d9bf0;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #1a8cd8;
+    }
+    button:disabled {
+      background: #8ecdf8;
+      cursor: not-allowed;
+    }
+    button.btn-danger {
+      background: #f4212e;
+    }
+    button.btn-danger:hover {
+      background: #dc1e29;
+    }
+    button.btn-stop {
+      background: #536471;
+    }
+    .status-bar {
+      font-size: 12px;
+      color: #536471;
+      background: #eff3f4;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      min-height: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .user-list {
+      max-height: 380px;
+      overflow-y: auto;
+      background: white;
+      border-radius: 12px;
+      border: 1px solid #cfd9de;
+    }
+    .user-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eff3f4;
+    }
+    .user-item:last-child {
+      border-bottom: none;
+    }
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+      background: #e1e8ed;
+    }
+    .user-meta {
+      flex: 1;
+      overflow: hidden;
+    }
+    .name {
+      font-weight: 700;
+      font-size: 13px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .screen-name {
+      font-size: 12px;
+      color: #536471;
+    }
+    .btn-action {
+      padding: 5px 12px;
+      font-size: 12px;
+      background: white;
+      color: #0f1419;
+      border: 1px solid #cfd9de;
+    }
+    .btn-action:hover {
+      background: #ffebe9;
+      color: #f4212e;
+      border-color: #fdc9ce;
+    }
+    .btn-action.unfollowed {
+      background: #eff3f4;
+      color: #536471;
+      border-color: transparent;
+      cursor: default;
+    }
+    .empty-tip {
+      padding: 30px;
+      text-align: center;
+      color: #536471;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="title">
+      <span>X 取关助手</span>
+      <span class="badge">开源免费版</span>
+    </div>
+    <div id="accountInfo" style="font-size: 12px; color: #536471;">检测登录中...</div>
+  </div>
+
+  <div class="controls">
+    <button id="btnScan">🔍 扫描未回关用户</button>
+    <button id="btnAutoUnfollow" class="btn-danger" style="display: none;">⚡ 批量安全取关 (间隔4s)</button>
+    <button id="btnStop" class="btn-stop" style="display: none;">⏹ 停止</button>
+  </div>
+
+  <div class="status-bar" id="statusBar">
+    <span id="statusText">请确保你已在浏览器登录 x.com</span>
+    <span id="countText"></span>
+  </div>
+
+  <div class="user-list" id="userList">
+    <div class="empty-tip">点击上方“扫描未回关用户”开始分析。<br><small style="color: #888;">（仅在本地比对，不上传任何隐私）</small></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

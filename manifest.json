@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "X (Twitter) Unfollower - 极简免收费版",
+  "version": "1.0.0",
+  "description": "本地安全扫描 X/Twitter 未回关用户，支持防风控批量或手动取关，完全免费且无隐私上传。",
+  "permissions": [
+    "cookies",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.twitter.com/*",
+    "*://*.x.com/*"
+  ],
+  "action": {
+    "default_title": "X 未回关检测工具",
+    "default_popup": "popup.html"
+  }
+}
